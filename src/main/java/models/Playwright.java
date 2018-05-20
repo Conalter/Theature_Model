@@ -2,8 +2,11 @@ package models;
 
 import sun.font.Script;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Playwright {
 
 
@@ -21,6 +24,9 @@ public abstract class Playwright {
         this.scripts = scripts;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -29,6 +35,7 @@ public abstract class Playwright {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -37,6 +44,7 @@ public abstract class Playwright {
         this.name = name;
     }
 
+    @Column(name = "age")
     public int getAge() {
         return age;
     }
@@ -45,6 +53,7 @@ public abstract class Playwright {
         this.age = age;
     }
 
+    @OneToMany(mappedBy = "playwright")
     public ArrayList<Script> getScripts() {
         return scripts;
     }

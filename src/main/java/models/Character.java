@@ -5,22 +5,22 @@ import java.util.ArrayList;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Characters {
+public abstract class Character {
 
     private int id;
     private String name;
     private ArrayList<Play> plays;
 
-    public Characters() {
+    public Character() {
     }
 
-    public Characters(String name, ArrayList<Play> plays) {
+    public Character(String name, ArrayList<Play> plays) {
         this.name = name;
         this.plays = plays;
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;

@@ -1,7 +1,10 @@
 package models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Play {
 
     private int id;
@@ -20,6 +23,9 @@ public abstract class Play {
         this.performances = performances;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -28,6 +34,7 @@ public abstract class Play {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -36,6 +43,8 @@ public abstract class Play {
         this.name = name;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "playwright_id")
     public String getWriter() {
         return writer;
     }
@@ -44,6 +53,8 @@ public abstract class Play {
         this.writer = writer;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "character_id")
     public ArrayList<Performer> getPerformers() {
         return performers;
     }
@@ -52,6 +63,7 @@ public abstract class Play {
         this.performers = performers;
     }
 
+    @Column(name = "performances")
     public int getPerformances() {
         return performances;
     }
