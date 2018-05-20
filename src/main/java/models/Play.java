@@ -2,22 +2,25 @@ package models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Play {
+public class Play {
 
     private int id;
     private String name;
+    private Enum genera;
     private String writer;
-    private ArrayList<Performer> performers;
+    private Set<Performer> performers;
     private int performances;
 
     public Play() {
     }
 
-    public Play(String name, String writer, ArrayList<Performer> performers, int performances) {
+    public Play(String name, Enum genera, String writer, Set<Performer> performers, int performances) {
         this.name = name;
+        this.genera = genera;
         this.writer = writer;
         this.performers = performers;
         this.performances = performances;
@@ -55,12 +58,12 @@ public abstract class Play {
 
     @ManyToOne
     @JoinColumn(name = "character_id")
-    public ArrayList<Performer> getPerformers() {
+    public Set<Performer> getPerformers() {
         return performers;
     }
 
     public void setPerformers(ArrayList<Performer> performers) {
-        this.performers = performers;
+        this.setPerformances();
     }
 
     @Column(name = "performances")
@@ -70,5 +73,14 @@ public abstract class Play {
 
     public void setPerformances(int performances) {
         this.performances = performances;
+    }
+
+    @Column(name = "genera")
+    public Enum getGenera() {
+        return genera;
+    }
+
+    public void setGenera(Enum genera) {
+        this.genera = genera;
     }
 }

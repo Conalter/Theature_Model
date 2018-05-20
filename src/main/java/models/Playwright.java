@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Playwright {
+public class Playwright {
 
 
     private int id;

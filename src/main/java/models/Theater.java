@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Theater {
+public class Theater {
 
     private int id;
     private String name;
